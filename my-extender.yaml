@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-scheduler-extender
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-scheduler-extender
+  template:
+    metadata:
+      labels:
+        app: my-scheduler-extender
+    spec:
+      containers:
+        - name: my-scheduler-extender
+          image: jennachen/my-scheduler-extender:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /version
+              port: 80
+          readinessProbe:
+            httpGet:
+              path: /version
+              port: 80
+          ports:
+            - containerPort: 80
