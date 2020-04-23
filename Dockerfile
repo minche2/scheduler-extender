@@ -1,6 +1,6 @@
 FROM ubuntu
 
-COPY extender_example /usr/bin/extender_example
-RUN chmod +x /usr/bin/extender_example
+COPY first_extender /usr/bin/first_extender
+RUN chmod +x /usr/bin/first_extender
 
-ENTRYPOINT ["/usr/bin/extender_example"]
+ENTRYPOINT ["/usr/bin/first_extender"]
